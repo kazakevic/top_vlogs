@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 
 use App\Http\Requests;
 use App\Channel;
+use App\Vote;
 use App\ApiService;
 use Auth;
+use Request;
+use App\Captcha;
+
+
 
 class ChannelsController extends Controller
 {
@@ -69,7 +74,8 @@ class ChannelsController extends Controller
 
         $channel = new Channel();
         $channel->title = $request->input('title');
-        $channel->desc = $request->input('desc');
+        $desc= $request->input('desc');
+        $channel->desc = htmlentities($desc);
         $channel->image = $request->input('image');
         $channel->country = $request->input('country');
         $channel->owner_id = Auth::id();
@@ -84,5 +90,27 @@ class ChannelsController extends Controller
         $data = Array();
         $data['channel_data'] = Channel::find($id);
         return view('channel', $data);
+    }
+    public function vote($id)
+    {
+        
+        if(Captcha::captchaCheck() == false)
+        {
+            return redirect()->back()
+                ->withErrors(['Wrong Captcha'])
+                ->withInput();
+        }
+
+        $channel = Channel::find($id);
+        $channel->votes_count += 1;
+        $channel->save();
+
+        $request = new Request();
+
+        $vote = new Vote();
+        $vote->ip = Request::ip();
+        $vote->save();
+
+        return redirect("/channel/$id");
     }
 }
