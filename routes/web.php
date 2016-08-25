@@ -24,6 +24,7 @@ Route::get('/channel/add', 'ChannelsController@addChannel');
 Route::post('/channel/check', 'ChannelsController@check');
 Route::post('/channel/save', 'ChannelsController@save');
 Route::get('/channel/save', 'ChannelsController@save');
+Route::get('/channel/{id}', 'ChannelsController@showChannel');
 
 
 Route::get('/callback/{provider}', 'SocialAuthController@callback');

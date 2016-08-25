@@ -13,11 +13,13 @@ class ChannelsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
     public function index()
     {
-        return view('vlogs');
+        $data = Array();
+        $data['channels'] = Channel::all();
+        return view('vlogs', $data);
     }
 
     public function addChannel()
@@ -26,8 +28,7 @@ class ChannelsController extends Controller
     }
     public function check(Request $request)
     {
-
-
+        //using youtube API class to get channel info
         $api = new ApiService();
 
         $title = $request->input('title');
@@ -62,11 +63,9 @@ class ChannelsController extends Controller
     public function save(Request $request)
     {
 
-
         $this->validate($request, [
             'title' => 'required|unique:channels|max:255'
         ]);
-
 
         $channel = new Channel();
         $channel->title = $request->input('title');
@@ -78,7 +77,12 @@ class ChannelsController extends Controller
 
         echo "ok";
 
+    }
 
-
+    public function showChannel($id)
+    {
+        $data = Array();
+        $data['channel_data'] = Channel::find($id);
+        return view('channel', $data);
     }
 }

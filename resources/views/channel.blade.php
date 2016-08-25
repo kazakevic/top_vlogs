@@ -4,22 +4,17 @@
 
     <div class="row">
         <div class="col-md-6">
-            @foreach ($channels as $channel)
+
 
                 <div class="panel panel-info">
                     <!-- Default panel contents -->
-                    <div class="panel-heading"><a href="channel/{{$channel->id}}">{{$channel->title}}</a></div>
+                    <div class="panel-heading">{{$channel_data->title}}</div>
                     <div class="panel-body">
-                        <p> {{ $channel->desc }}</p>
+                        <p> {{ $channel_data->desc }}</p>
                     </div>
                 </div>
 
-
-
-            @endforeach
         </div>
-
-
         <div class="col-md-4">
 
             <div class="panel panel-info">
@@ -38,6 +33,8 @@
             </div>
 
         </div>
+
+
 
     </div>
 
