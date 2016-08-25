@@ -26,6 +26,8 @@ Route::post('/channel/save', 'ChannelsController@save');
 Route::get('/channel/save', 'ChannelsController@save');
 Route::get('/channel/{id}', 'ChannelsController@showChannel');
 
+Route::post('channel/vote/{id}', 'ChannelsController@vote');
+
 
 Route::get('/callback/{provider}', 'SocialAuthController@callback');
 Route::get('/redirect/{provider}', 'SocialAuthController@redirect');

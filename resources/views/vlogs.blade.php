@@ -8,13 +8,30 @@
 
                 <div class="panel panel-info">
                     <!-- Default panel contents -->
-                    <div class="panel-heading"><a href="channel/{{$channel->id}}">{{$channel->title}}</a></div>
+
+
+                    <div class="panel-heading">
+                        <a href="channel/{{$channel->id}}">{{$channel->title}}</a>
+                        <span class="label label-info pull-right">Votes: {{$channel->votes_count}}</span></div>
                     <div class="panel-body">
-                        <p> {{ $channel->desc }}</p>
+
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                    <img class="media-object" src="{{$channel->image}}" alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h5 class="media-heading">{{ substr($channel->desc, 0) }}</h5>
+                                [...]
+                            </div>
+                        </div>
+
+
+
+
                     </div>
                 </div>
-
-
 
             @endforeach
         </div>
