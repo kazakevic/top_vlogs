@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                            <a href="redirect">Login with Google+</a>
+                            <a href="redirect/google">Login with Google+</a>
                                 </div>
                         </div>
 

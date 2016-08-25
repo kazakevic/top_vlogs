@@ -12,15 +12,18 @@ use App\Http\Requests;
 class SocialAuthController extends Controller
 {
     //
-    public function redirect()
+    public function redirect($provider)
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function callback(SocialAccountService $service)
+    public function callback(SocialAccountService $service, $provider)
     {
-        // when facebook call us a with token
-        $user = $service->createOrGetUser(Socialite::driver('google')->user());
+
+
+        // Important change from previous post is that I'm now passing
+        // whole driver, not only the user. So no more ->user() part
+        $user = $service->createOrGetUser(Socialite::driver($provider));
 
         auth()->login($user);
 
