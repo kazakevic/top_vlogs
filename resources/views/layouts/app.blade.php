@@ -39,7 +39,8 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="http://www.eastviewbaptist.org.nz/images/page_images/YouTube-Logo-Social-Small.png" class="navbar-brand" />
+            <a class="navbar-brand" href="{{ url('') }}">
                 TOP video blogs
             </a>
         </div>
@@ -65,7 +66,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/ads/myAds') }}"><i class="glyphicon glyphicon-list-alt"></i> My Ads</a></li>
+                            <li><a href="{{ url('/my_channels') }}"><i class="glyphicon glyphicon-list-alt"></i> My channels</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                         </ul>
                     </li>
@@ -86,6 +87,9 @@
 
 <script type="text/javascript">
 
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
 
 
     $('#check').click(function (e) {

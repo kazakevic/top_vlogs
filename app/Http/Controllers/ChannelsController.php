@@ -9,8 +9,10 @@ use App\Channel;
 use App\Vote;
 use App\ApiService;
 use Auth;
-use Request;
+use Illuminate\Pagination\Paginator;
+
 use App\Captcha;
+use Illuminate\Http\Request;
 
 
 
@@ -111,9 +113,9 @@ class ChannelsController extends Controller
         $channel->votes_count += 1;
         $channel->save();
 
-
+        $request = new Request();
         $vote = new Vote();
-        $vote->ip = Request::ip();
+        $vote->ip = $request->ip();
         $vote->save();
 
         return redirect("/channel/$id");
@@ -121,7 +123,8 @@ class ChannelsController extends Controller
 
     private function voteCheck()
     {
-        $ip = Request::ip();
+        $request = new Request();
+        $ip = $request->ip();
 
         $rows = Vote::where('ip', $ip)->count();
         if($rows > 0)
@@ -129,7 +132,6 @@ class ChannelsController extends Controller
             //now we need to check if last vote time is less or greater thant N
             $q = Vote::where('ip', $ip)->first();
             print_r($q);
-
 
             $vote_time = $q->created_at;
             $difference = (time() - strtotime($vote_time))/3600;
@@ -142,9 +144,53 @@ class ChannelsController extends Controller
                 $q->delete();
                 return true;
             }
-
         }
         else
             return true;
+    }
+
+    public function myChannels()
+    {
+        $data = Array();
+        $data['channels'] = Channel::where('owner_id', Auth::user()->id)->orderBy('votes_count', 'desc')->get();
+
+        return view('my_channels', $data);
+    }
+    public function editMyChannel($id)
+    {
+        //check if it's owner of this channel
+        $q = Channel::where('id', $id)->first();
+        if($q->owner_id != Auth::user()->id)
+        {
+            echo "You are not owner of this channel!";
+            return;
+        }
+
+        $data = Array();
+        $data['channel_data'] = Channel::where('id', $id)->first();
+        return view('my_channel_edit', $data);
+    }
+    public function updateMyChannel($id, Request $request)
+    {
+        //check if it's owner of this channel
+        $q = Channel::where('id', $id)->first();
+        if($q->owner_id != Auth::user()->id)
+        {
+            echo "You are not owner of this channel!";
+            return;
+        }
+
+        $channel = Channel::where('id', $id)->first();
+        $channel->title = $request->input('title');
+        $channel->desc = $request->input('desc');
+        $channel->save();
+
+        return redirect('/my_channels');
+    }
+    public function deleteMyChannel($id)
+    {
+        $channel = Channel::where('id', $id)->first();
+        $channel->delete();
+        return redirect('/my_channels');
     }
 }

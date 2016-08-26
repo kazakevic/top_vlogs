@@ -31,3 +31,11 @@ Route::post('channel/vote/{id}', 'ChannelsController@vote');
 
 Route::get('/callback/{provider}', 'SocialAuthController@callback');
 Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+
+
+//my menu
+Route::get('/my_channels', 'ChannelsController@myChannels');
+Route::get('/my_channel/edit/{id}', 'ChannelsController@editMyChannel');
+Route::post('/my_channel/update/{id}', 'ChannelsController@updateMyChannel');
+
+Route::get('/my_channel/delete/{id}', 'ChannelsController@deleteMyChannel');
