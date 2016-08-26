@@ -39,3 +39,10 @@ Route::get('/my_channel/edit/{id}', 'ChannelsController@editMyChannel');
 Route::post('/my_channel/update/{id}', 'ChannelsController@updateMyChannel');
 
 Route::get('/my_channel/delete/{id}', 'ChannelsController@deleteMyChannel');
+
+
+Route::get('/logout', function() {
+    Auth::logout();
+    Session::flush();
+    return Redirect::to('/');
+});

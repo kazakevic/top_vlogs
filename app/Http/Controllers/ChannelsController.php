@@ -180,6 +180,11 @@ class ChannelsController extends Controller
             return;
         }
 
+        $this->validate($request, [
+            'title' => 'required|unique:channels|max:255',
+            'desc' => 'required|min:50',
+        ]);
+
         $channel = Channel::where('id', $id)->first();
         $channel->title = $request->input('title');
         $channel->desc = $request->input('desc');
@@ -187,6 +192,7 @@ class ChannelsController extends Controller
 
         return redirect('/my_channels');
     }
+
     public function deleteMyChannel($id)
     {
         $channel = Channel::where('id', $id)->first();
