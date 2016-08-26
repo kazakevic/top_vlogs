@@ -22,8 +22,8 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h5 class="media-heading">{{ substr($channel->desc, 0) }}</h5>
-                                [...]
+                                <h5 class="media-heading">{{ mb_substr($channel->desc, 0, 150) }} [...]</h5>
+                                <a href="channel/{{$channel->id}}">Read full description</a>
                             </div>
                         </div>
 

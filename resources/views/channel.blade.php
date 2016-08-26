@@ -5,7 +5,6 @@
     <div class="row">
         <div class="col-md-6">
 
-
                 <div class="panel panel-info">
                     <!-- Default panel contents -->
                     <div class="panel-heading">{{$channel_data->title}}<span class="label label-info pull-right">Votes: {{$channel_data->votes_count}}</span></div>
@@ -14,6 +13,7 @@
 
                         <form method="post" action="vote/{{$channel_data->id}}">
                             <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                            <br/>
                             <button type="submit" class="btn btn-info">
                                 <span class="glyphicon glyphicon-heart-empty"></span> Vote
                             </button>

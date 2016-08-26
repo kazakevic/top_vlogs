@@ -23,7 +23,7 @@ class ChannelsController extends Controller
     public function index()
     {
         $data = Array();
-        $data['channels'] = Channel::all();
+        $data['channels'] = Channel::where('status', 0)->orderBy('votes_count', 'desc')->get();
         return view('vlogs', $data);
     }
 
@@ -93,7 +93,6 @@ class ChannelsController extends Controller
     }
     public function vote($id)
     {
-        
         if(Captcha::captchaCheck() == false)
         {
             return redirect()->back()
@@ -101,16 +100,51 @@ class ChannelsController extends Controller
                 ->withInput();
         }
 
+        if (!$this->voteCheck())
+        {
+            return redirect()->back()
+                ->withErrors(['You alredy voted. You can vote only once per 24 hours.'])
+                ->withInput();
+        }
+
         $channel = Channel::find($id);
         $channel->votes_count += 1;
         $channel->save();
 
-        $request = new Request();
 
         $vote = new Vote();
         $vote->ip = Request::ip();
         $vote->save();
 
         return redirect("/channel/$id");
+    }
+
+    private function voteCheck()
+    {
+        $ip = Request::ip();
+
+        $rows = Vote::where('ip', $ip)->count();
+        if($rows > 0)
+        {
+            //now we need to check if last vote time is less or greater thant N
+            $q = Vote::where('ip', $ip)->first();
+            print_r($q);
+
+
+            $vote_time = $q->created_at;
+            $difference = (time() - strtotime($vote_time))/3600;
+            if($difference < 24)
+            {
+                return false;
+            }
+            else
+            {
+                $q->delete();
+                return true;
+            }
+
+        }
+        else
+            return true;
     }
 }
