@@ -25,6 +25,7 @@
       <div class="form-group">
         <input type="submit" value="check" id="check" class="btn btn-success"/>
       </div>
+        <div id="load"><img src="{{asset('img/morph-shape-gif-preloader.gif')}}" id="loading" style="visibility: hidden"/></div>
     </form>
   </div>
   <br/>

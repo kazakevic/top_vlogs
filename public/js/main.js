@@ -11,6 +11,7 @@ $('#check').click(function (e) {
         url: './check',
         data: {title: $('#title').val()},
         success: function( res ) {
+            $("#loading").css("visibility", "hidden");
             if (res == 0)
             {
                 $(".channel_form").css("visibility", "hidden")
@@ -29,7 +30,11 @@ $('#check').click(function (e) {
                 $("#country1").html(obj.country);
 
             }
+        },
+        beforeSend: function( res ) {
+            $("#loading").css("visibility", "visible");
         }
+
     });
 
 });
@@ -51,6 +56,7 @@ $('#save').click(function (e) {
             image: image,
             country: country
         },
+
         success: function( res1 ) {
             $("#info").html("<div class='alert alert-success' role='alert'>Channel saved!</div>");
         },
