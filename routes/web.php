@@ -43,8 +43,10 @@ Route::get('/my_channel/update/{id}', ['uses' => 'ChannelsController@updateMyCha
 
 Route::get('/my_channel/delete/{id}', 'ChannelsController@deleteMyChannel');
 
-
+//admin routes
 Route::get('admin', ['uses' => 'AdminController@index', 'middleware' => 'auth']);
+Route::get('admin/settings', ['uses' => 'AdminController@settings', 'middleware' => 'auth']);
+Route::post('admin/updateSettings', ['uses' => 'AdminController@updateSettings', 'middleware' => 'auth']);
 
 
 Route::get('/logout', function() {

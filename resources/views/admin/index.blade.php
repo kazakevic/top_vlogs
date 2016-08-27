@@ -8,13 +8,13 @@
             <div class="sidebar-nav panel panel-default">
                 <div class="panel-heading">Admin Menu</div>
                 <div class="list-group">
-                    <a href="admin" class="list-group-item"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
+                    <a href="{{url('/admin')}}" class="list-group-item"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
                     <a href="#" class="list-group-item"><i class="glyphicon glyphicon-briefcase"></i> Channels
                         <i class="badge badge-info">{{$channels_count}}</i></a>
                     <a href="#" class="list-group-item"><i class="glyphicon glyphicon-user"></i> Users
                         <i class="badge badge-info">{{$users_count}}</i></a></a>
                     <div class="divider"></div>
-                    <a href="#" class="list-group-item"><i class="glyphicon glyphicon-cog"></i> Settings</a>
+                    <a href="{{url('admin/settings')}}" class="list-group-item"><i class="glyphicon glyphicon-cog"></i> Settings</a>
 
                 </div>
             </div>

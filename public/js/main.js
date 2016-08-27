@@ -53,7 +53,6 @@ $('#save').click(function (e) {
         },
         success: function( res1 ) {
             $("#info").html("<div class='alert alert-success' role='alert'>Channel saved!</div>");
-
         },
         error :function( jqXhr ) {
             if( jqXhr.status === 422 ) {
