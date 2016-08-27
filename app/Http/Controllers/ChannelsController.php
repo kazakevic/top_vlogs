@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 
-
 use App\Http\Requests;
 use App\Channel;
 use App\Vote;
 use App\ApiService;
+use App\Category;
 use Auth;
 use Illuminate\Pagination\Paginator;
 use App\User;
@@ -17,18 +17,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-
 class ChannelsController extends Controller
 {
     public function __construct()
     {
 
     }
+
     public function index()
     {
         $data = Array();
+        $data['categories'] = Category::all();
         $data['channels'] = Channel::where('status', 0)->orderBy('votes_count', 'desc')->paginate(5);
         $data['users'] = User::all();
+        return view('vlogs', $data);
+    }
+    public function showChannels($id)
+    {
+        $data = Array();
+        $data['categories'] = Category::all();
+        $data['users'] = User::all();
+        $data['channels'] = Channel::where('category_id', $id)->paginate(5);
+
         return view('vlogs', $data);
     }
 
@@ -36,6 +46,7 @@ class ChannelsController extends Controller
     {
         return view('addChannel');
     }
+
     public function check(Request $request)
     {
         //using youtube API class to get channel info
@@ -44,10 +55,9 @@ class ChannelsController extends Controller
         $title = $request->input('title');
         $res = $api->getInfo($title);
 
-        if(!$res)
+        if (!$res)
             echo "0";
-        else
-        {
+        else {
             $data = array();
 
 //Check if objects exits in channel's json
@@ -79,7 +89,7 @@ class ChannelsController extends Controller
 
         $channel = new Channel();
         $channel->title = $request->input('title');
-        $desc= $request->input('desc');
+        $desc = $request->input('desc');
         $channel->desc = htmlentities($desc);
         $channel->image = $request->input('image');
         $channel->country = $request->input('country');
@@ -96,17 +106,16 @@ class ChannelsController extends Controller
         $data['channel_data'] = Channel::find($id);
         return view('channel', $data);
     }
+
     public function vote($id)
     {
-        if(Captcha::captchaCheck() == false)
-        {
+        if (Captcha::captchaCheck() == false) {
             return redirect()->back()
                 ->withErrors(['Wrong Captcha'])
                 ->withInput();
         }
 
-        if (!$this->voteCheck())
-        {
+        if (!$this->voteCheck()) {
             return redirect()->back()
                 ->withErrors(['You alredy voted. You can vote only once per 24 hours.'])
                 ->withInput();
@@ -118,37 +127,32 @@ class ChannelsController extends Controller
 
         $request = new Request();
         $vote = new Vote();
-        $vote->ip = $request->ip();
+        $vote->ip = $_SERVER['REMOTE_ADDR'];
         $vote->save();
 
-        return redirect("/channel/$id");
+        return redirect("/channel/$id")->with('status', 'Your vote added, thank you!');
     }
 
     private function voteCheck()
     {
         $request = new Request();
-        $ip = $request->ip();
+        $ip = $_SERVER['REMOTE_ADDR'];
 
         $rows = Vote::where('ip', $ip)->count();
-        if($rows > 0)
-        {
+        if ($rows > 0) {
             //now we need to check if last vote time is less or greater thant N
             $q = Vote::where('ip', $ip)->first();
             print_r($q);
 
             $vote_time = $q->created_at;
-            $difference = (time() - strtotime($vote_time))/3600;
-            if($difference < 24)
-            {
+            $difference = (time() - strtotime($vote_time)) / 3600;
+            if ($difference < 24) {
                 return false;
-            }
-            else
-            {
+            } else {
                 $q->delete();
                 return true;
             }
-        }
-        else
+        } else
             return true;
     }
 
@@ -159,41 +163,54 @@ class ChannelsController extends Controller
 
         return view('my_channels', $data);
     }
+
     public function editMyChannel($id)
     {
         //check if it's owner of this channel
         $q = Channel::where('id', $id)->first();
-        if($q->owner_id != Auth::user()->id)
-        {
+        if ($q->owner_id != Auth::user()->id) {
             echo "You are not owner of this channel!";
             return;
         }
 
         $data = Array();
-        $data['channel_data'] = Channel::where('id', $id)->first();
+        $ch_data = Channel::where('id', $id)->first();
+
+        if ($ch_data->category_id != 0) {
+            $c = Category::where('id', $ch_data->category_id)->first();
+            $cat = $c->cat_name;
+        } else {
+            $cat = "Not set";
+        }
+
+        $data['current_category'] = $cat;
+        $data['channel_data'] = $ch_data;
+        $data['categories'] = Category::all();
+
         return view('my_channel_edit', $data);
     }
+
     public function updateMyChannel($id, Request $request)
     {
         //check if it's owner of this channel
         $q = Channel::where('id', $id)->first();
-        if($q->owner_id != Auth::user()->id)
-        {
+        if ($q->owner_id != Auth::user()->id) {
             echo "You are not owner of this channel!";
             return;
         }
 
         $this->validate($request, [
-            'title' => 'required|unique:channels|max:255',
+            'title' => 'required|max:255',
             'desc' => 'required|min:50',
         ]);
 
         $channel = Channel::where('id', $id)->first();
         $channel->title = $request->input('title');
         $channel->desc = $request->input('desc');
+        $channel->category_id = $request->input('cat');
         $channel->save();
 
-        return redirect('/my_channels');
+        return redirect('/my_channel/edit/' . $id)->with('status', 'Channel information updated!');
     }
 
     public function deleteMyChannel($id)

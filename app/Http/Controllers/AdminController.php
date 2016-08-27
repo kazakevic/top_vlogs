@@ -58,6 +58,6 @@ class AdminController extends Controller
         $cfg->cfg_value = $request->input('voteTime');
         $cfg->save();
 
-        return redirect(url('admin/settings'))->with('status', 'Settings updated!');;
+        return redirect(url('admin/settings'))->with('status', 'Settings updated!');
     }
 }

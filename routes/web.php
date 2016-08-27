@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'ChannelsController@index');
 Route::get('/', 'ChannelsController@index');
 
+Route::get('/channels/cat/{id}', 'ChannelsController@showChannels');
 Route::get('/channel/add', 'ChannelsController@addChannel');
 Route::post('/channel/check', 'ChannelsController@check');
 Route::post('/channel/save', 'ChannelsController@save');
@@ -39,7 +40,7 @@ Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
 //my menu
 Route::get('/my_channels', ['uses' => 'ChannelsController@myChannels', 'middleware' => 'auth']);
 Route::get('/my_channel/edit/{id}', ['uses' => 'ChannelsController@editMyChannel', 'middleware' => 'auth']);
-Route::get('/my_channel/update/{id}', ['uses' => 'ChannelsController@updateMyChannel', 'middleware' => 'auth']);
+Route::post('/my_channel/update/{id}', ['uses' => 'ChannelsController@updateMyChannel', 'middleware' => 'auth']);
 
 Route::get('/my_channel/delete/{id}', 'ChannelsController@deleteMyChannel');
 

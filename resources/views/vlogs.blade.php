@@ -42,26 +42,29 @@
                 </div>
 
             @endforeach
-                <div class="col-md-6">
-                    {{ $channels->links() }}
-                </div>
+            <div class="col-md-6">
+                {{ $channels->links() }}
+            </div>
         </div>
 
 
         <div class="col-md-4">
             <div class="panel panel-info">
                 <!-- Default panel contents -->
-                <div class="panel-heading">Advertisements</div>
+                <div class="panel-heading">Categories</div>
                 <div class="panel-body">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- adtest -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="ca-pub-9493194080750304"
-                         data-ad-slot="8126183300"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <ul class="list-group">
+                        @foreach($categories as $cat)
+                            <a href="{{url('channels/cat/'.$cat->id)}}">
+                                <li class="list-group-item">
+                                    <b>{{$cat->cat_name}}</b>
+                                    <!-- <span class="badge">14</span> -->
+                                </li>
+                            </a>
+                        @endforeach
+                    </ul>
+
+
                 </div>
             </div>
             <div class="panel panel-info">
@@ -73,7 +76,6 @@
             </div>
 
         </div>
-
 
 
     </div>
