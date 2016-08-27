@@ -10,9 +10,11 @@ use App\Vote;
 use App\ApiService;
 use Auth;
 use Illuminate\Pagination\Paginator;
+use App\User;
 
 use App\Captcha;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -25,7 +27,8 @@ class ChannelsController extends Controller
     public function index()
     {
         $data = Array();
-        $data['channels'] = Channel::where('status', 0)->orderBy('votes_count', 'desc')->get();
+        $data['channels'] = Channel::where('status', 0)->orderBy('votes_count', 'desc')->paginate(5);
+        $data['users'] = User::all();
         return view('vlogs', $data);
     }
 
@@ -199,4 +202,6 @@ class ChannelsController extends Controller
         $channel->delete();
         return redirect('/my_channels');
     }
+
+
 }

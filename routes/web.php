@@ -25,6 +25,9 @@ Route::post('/channel/check', 'ChannelsController@check');
 Route::post('/channel/save', 'ChannelsController@save');
 Route::get('/channel/save', 'ChannelsController@save');
 Route::get('/channel/{id}', 'ChannelsController@showChannel');
+//charts routes
+Route::get('/charts/channels', 'ChartsDataController@channelsData');
+Route::get('/charts/users', 'ChartsDataController@usersData');
 
 Route::post('channel/vote/{id}', 'ChannelsController@vote');
 
@@ -34,11 +37,14 @@ Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
 
 
 //my menu
-Route::get('/my_channels', 'ChannelsController@myChannels');
-Route::get('/my_channel/edit/{id}', 'ChannelsController@editMyChannel');
-Route::post('/my_channel/update/{id}', 'ChannelsController@updateMyChannel');
+Route::get('/my_channels', ['uses' => 'ChannelsController@myChannels', 'middleware' => 'auth']);
+Route::get('/my_channel/edit/{id}', ['uses' => 'ChannelsController@editMyChannel', 'middleware' => 'auth']);
+Route::get('/my_channel/update/{id}', ['uses' => 'ChannelsController@updateMyChannel', 'middleware' => 'auth']);
 
 Route::get('/my_channel/delete/{id}', 'ChannelsController@deleteMyChannel');
+
+
+Route::get('admin', ['uses' => 'AdminController@index', 'middleware' => 'auth']);
 
 
 Route::get('/logout', function() {
