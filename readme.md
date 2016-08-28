@@ -17,26 +17,26 @@ Paspaudus šį mygtuką atsiranda kanalo patikrinimo langas. Pirmiausia reikia
 įvesti kanalo pavadinimą, kuris yra naudojamas Youtube platformoje. Tam, kad
 sužinoti kanalo pavadinimą reikia nueiti į Youtube kanalo puslapį ir paspausti
 "About". Kanalo pavadinimas matomas adreso lauke kaip pavaizduota žemiau esančiame
-paveikslėlyje. 
-![](https://s3.postimg.org/l3ty4nolv/channel_name.jpg)
+paveikslėlyje. <br />
+![](https://s3.postimg.org/l3ty4nolv/channel_name.jpg)<br />
 **Dėmesio!** Ne visi Youtube kanalai turi nusistatė savo pavadinimą, kai
 kuriais atvejais vietoj kanalo pavadinimo bus rodomas kanalo ID. Kolkas
 sistema nepalaiko galimybės nuskaityti kanalo informaciją pagal kanalo
 ID.
 Įrašę kanalo pavadinimą į laukelį "Title" spaudžiamas "Check mygtukas".
-Jeigu pavyko rasti kanalo informaciją ji atvaizduojama žemiau. 
-![](https://s16.postimg.org/smbnxha2t/fsdfdsdf.png)
+Jeigu pavyko rasti kanalo informaciją ji atvaizduojama žemiau. <br />
+![](https://s16.postimg.org/smbnxha2t/fsdfdsdf.png)<br />
 Tam, kad pabaigt kanalo registraciją reikia įvesti kanalo antraštę ir
 paspausti žalią mygtuką "Add channel". 
 
 Užregistravus kanalą atsirandą galimybė priskirti jam kategoriją. Tai galima
 padaryti užėjus į savo kanalų sarašą (viršutiniame dešiajame kampe)
-reikia paspausti mygtuką "My Channels". 
-![](https://s22.postimg.org/jx8fvxqhd/fdsfsdfsdf.png)
+reikia paspausti mygtuką "My Channels". <br />
+![](https://s22.postimg.org/jx8fvxqhd/fdsfsdfsdf.png)<br />
 Atsiranda jūsų registruotų kanalų sąrašas. Prie atitinkamo kanalo
 paspaudus mygtuką "Edit" atsiranda redagavimo meniu, kur vartotojas
-gali pasikeisti kanalo antraštę, aprašymą, bei priskirti jam kategoriją.
-![](https://s4.postimg.org/r4rtudr4t/sdfsdfsdfs.png)
+gali pasikeisti kanalo antraštę, aprašymą, bei priskirti jam kategoriją.<br />
+![](https://s4.postimg.org/r4rtudr4t/sdfsdfsdfs.png)<br />
 
 **Administravimo meniu**
 Pagal nutylėjimą administratoriaus prisijungimo duomenys:
@@ -49,9 +49,9 @@ administratoriaus duomenimis ir tada nueiti adresu:
 
 **Dėmesio!** Jeigu administravimo pagrindiniame puslapyje neatvaizduojami
 grafikai būtina išjungti visas reklamos blokavimo priemones!
-
+<br />
 ![](https://s9.postimg.org/lqd6vy40f/sdsdsdsdsd.png)
-
+<br />
 
 **Panaudotos technologijos:**
 Laravel 5.3 PHP framework,
