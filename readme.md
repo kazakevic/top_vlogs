@@ -11,8 +11,8 @@ Tam, kad užregistruoti kanalą pirmiausia reikia prisijungti prie
 TOP Youtube channels sistemos. Tai padaryti galima prisiregistravus arba
 pasinaudojant savo Google+ paskyra. Tam reikia paspausti "Sign in with Google".
 Prisijungus prie sistemos atsiranda galimybė užregistruoti savo kanalą. 
-Viršutiniame dešiniame kampe atsiranda žalias mygtukas - "Add Channel". 
-![](https://s16.postimg.org/6kfyi6jn9/first.png)
+Viršutiniame dešiniame kampe atsiranda žalias mygtukas - "Add Channel". <br />
+![](https://s16.postimg.org/6kfyi6jn9/first.png)<br />
 Paspaudus šį mygtuką atsiranda kanalo patikrinimo langas. Pirmiausia reikia
 įvesti kanalo pavadinimą, kuris yra naudojamas Youtube platformoje. Tam, kad
 sužinoti kanalo pavadinimą reikia nueiti į Youtube kanalo puslapį ir paspausti
