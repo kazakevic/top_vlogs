@@ -54,13 +54,13 @@ grafikai būtina išjungti visas reklamos blokavimo priemones!
 <br />
 
 **Panaudotos technologijos:**
-Laravel 5.3 PHP framework,
-Laravel Socialite, Google Auth
-jQuery kartu su Ajax,
-Bootstrap,
-Chart.js,
-Youtube API,
-MySQL database.
+Laravel 5.3 PHP framework,<br />
+Laravel Socialite, Google Auth<br />
+jQuery kartu su Ajax,<br />
+Bootstrap,<br />
+Chart.js,<br />
+Youtube API,<br />
+MySQL database.<br />
 
 
 
