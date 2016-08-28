@@ -53,7 +53,7 @@ grafikai būtina išjungti visas reklamos blokavimo priemones!
 ![](https://s9.postimg.org/lqd6vy40f/sdsdsdsdsd.png)
 <br />
 
-**Panaudotos technologijos:**
+**Panaudotos technologijos:**<br />
 Laravel 5.3 PHP framework,<br />
 Laravel Socialite, Google Auth<br />
 jQuery kartu su Ajax,<br />
