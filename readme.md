@@ -1,27 +1,67 @@
-# Laravel PHP Framework
+#TOP youtube channels
+**Kas tai?**
+Ši sistema skirta žmonės, kurie turi savo video blogus Youtube platformoje. 
+Vartotojas gali užregistruoti savo kanalą Top Youtube Channels sistemoje 
+ir rinkti balsus tam, kad jo kanalo pozicija kiltų pagrindiniame puslapyje.
+Pagal nutylėjimą balsuoti galima iš vieno IP adreso tik kartą per 24
+valandas. 
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+**Kaip užregistruoti Youtube kanalą?**
+Tam, kad užregistruoti kanalą pirmiausia reikia prisijungti prie
+TOP Youtube channels sistemos. Tai padaryti galima prisiregistravus arba
+pasinaudojant savo Google+ paskyra. Tam reikia paspausti "Sign in with Google".
+Prisijungus prie sistemos atsiranda galimybė užregistruoti savo kanalą. 
+Viršutiniame dešiniame kampe atsiranda žalias mygtukas - "Add Channel". 
+![](https://s16.postimg.org/6kfyi6jn9/first.png)
+Paspaudus šį mygtuką atsiranda kanalo patikrinimo langas. Pirmiausia reikia
+įvesti kanalo pavadinimą, kuris yra naudojamas Youtube platformoje. Tam, kad
+sužinoti kanalo pavadinimą reikia nueiti į Youtube kanalo puslapį ir paspausti
+"About". Kanalo pavadinimas matomas adreso lauke kaip pavaizduota žemiau esančiame
+paveikslėlyje. 
+![](https://s3.postimg.org/l3ty4nolv/channel_name.jpg)
+**Dėmesio!** Ne visi Youtube kanalai turi nusistatė savo pavadinimą, kai
+kuriais atvejais vietoj kanalo pavadinimo bus rodomas kanalo ID. Kolkas
+sistema nepalaiko galimybės nuskaityti kanalo informaciją pagal kanalo
+ID.
+Įrašę kanalo pavadinimą į laukelį "Title" spaudžiamas "Check mygtukas".
+Jeigu pavyko rasti kanalo informaciją ji atvaizduojama žemiau. 
+![](https://s16.postimg.org/smbnxha2t/fsdfdsdf.png)
+Tam, kad pabaigt kanalo registraciją reikia įvesti kanalo antraštę ir
+paspausti žalią mygtuką "Add channel". 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Užregistravus kanalą atsirandą galimybė priskirti jam kategoriją. Tai galima
+padaryti užėjus į savo kanalų sarašą (viršutiniame dešiajame kampe)
+reikia paspausti mygtuką "My Channels". 
+![](https://s22.postimg.org/jx8fvxqhd/fdsfsdfsdf.png)
+Atsiranda jūsų registruotų kanalų sąrašas. Prie atitinkamo kanalo
+paspaudus mygtuką "Edit" atsiranda redagavimo meniu, kur vartotojas
+gali pasikeisti kanalo antraštę, aprašymą, bei priskirti jam kategoriją.
+![](https://s4.postimg.org/r4rtudr4t/sdfsdfsdfs.png)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+**Administravimo meniu**
+Pagal nutylėjimą administratoriaus prisijungimo duomenys:
+Login: adminas@test.lt
+Password: admin123
 
-## Official Documentation
+Tam, kad patekti į administravimo meniu pirmiausia reikia prisijungti su
+administratoriaus duomenimis ir tada nueiti adresu:
+[http://adverts.vhost.lt/public/admin](http://adverts.vhost.lt/public/admin)
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+**Dėmesio!** Jeigu administravimo pagrindiniame puslapyje neatvaizduojami
+grafikai būtina išjungti visas reklamos blokavimo priemones!
 
-## Contributing
+![](https://s9.postimg.org/lqd6vy40f/sdsdsdsdsd.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+**Panaudotos technologijos:**
+Laravel 5.3 PHP framework,
+Laravel Socialite, Google Auth
+jQuery kartu su Ajax,
+Bootstrap,
+Chart.js,
+Youtube API,
+MySQL database.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
